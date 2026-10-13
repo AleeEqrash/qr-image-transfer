@@ -25,6 +25,34 @@ Two protocols, auto-detected by the receiver:
 | Tail behavior | waits on *specific* missing frames (coupon collector) | **any** K(1+ε) drops complete the file |
 | META | once per loop | interleaved every 20 frames |
 
+## Results at a glance
+
+Same 33.5 KB image, same phones, same room — 224 s → 10 s (22×) in four diagnosis-driven steps:
+
+![improvement timeline](docs/img/fig_timeline.png)
+
+Collection curves: v1 crawls the tail; v2 finishes data in 13 s but waits 60 s on a once-per-pass META
+(shaded); interleaving META removes the wait:
+
+![arrival curves](docs/img/fig_arrival_small.png)
+
+The 3.6 MB photo: linear bulk (~5 blocks/s), mid grind, then the peeling avalanche 4,003 → 4,494 in 64 s:
+
+![big file curve](docs/img/fig_arrival_big.png)
+
+Fountain overhead stays 12–32% from K = 42 to K = 4,494 blocks:
+
+![fountain overhead](docs/img/fig_overhead.png)
+
+Per-run decode-error signatures — the failed dense-Q run (far right) is dominated by `FormatException`:
+the sensor can't even locate V25 finders, proving a hard optical wall, not a software bug:
+
+![error signatures](docs/img/fig_errors.png)
+
+Where each config sits on the QR capacity map (green = reliably phone-decodable):
+
+![QR capacity map](docs/img/fig_capacity.png)
+
 ## Quickstart
 
 ```bash
