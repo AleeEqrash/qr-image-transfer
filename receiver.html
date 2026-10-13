@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" /><title>Receiver — QR Image Transfer</title>
+<style>body{font-family:system-ui;margin:0;background:#0b0e14;color:#e6edf3}.wrap{padding:1rem;max-width:800px;margin:auto}video{width:100%;background:#000;border-radius:8px}#bar{height:14px;background:#222;border-radius:7px;overflow:hidden}#fill{height:100%;width:0;background:#238636}button{background:#238636;color:#fff;border:0;border-radius:6px;padding:.5rem 1rem}pre{white-space:pre-wrap;background:#111;padding:.6rem;border-radius:6px}</style>
+</head>
+<body>
+<div class="wrap">
+<h2>Receiver — camera → reassemble</h2>
+<button id="start">Start camera</button>
+<button id="stop">Stop</button>
+<button id="report">Download report (.txt)</button>
+<video id="video" playsinline muted></video>
+<div id="bar"><div id="fill"></div></div>
+<p id="stats">idle</p>
+<pre id="log"></pre>
+<div id="out"></div>
+</div>
+<script type="module" src="/src/receiver.ts"></script>
+</body></html>

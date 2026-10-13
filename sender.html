@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" /><title>Sender — QR Image Transfer</title>
+<style>
+body{font-family:system-ui;margin:0;background:#111;color:#eee}
+.wrap{max-width:900px;margin:auto;padding:1rem}
+.row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:end}
+label{display:flex;flex-direction:column;font-size:.8rem;gap:.2rem}
+input,select,textarea{background:#1c2330;color:#eee;border:1px solid #333;border-radius:6px;padding:.4rem}
+button{background:#238636;color:#fff;border:0;border-radius:6px;padding:.5rem 1rem;cursor:pointer}
+#stage{background:#fff;color:#000;min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;padding:1rem;cursor:pointer}
+#qr{width:min(78vmin,720px);height:min(78vmin,720px);image-rendering:pixelated}
+.meta{color:#000;font-family:monospace}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h2>Sender — text / file → QR loop</h2>
+<div class="row">
+<label>Text<input id="text" value="HELLO QR" size="20" /></label>
+<label>File<input id="file" type="file" /></label>
+<label>Proto <select id="proto"><option value="1">v1 chunks</option><option value="2" selected>v2 fountain</option></select></label>
+<label>Chunk <select id="chunk"><option>400</option><option>500</option><option>600</option><option selected>800</option><option>1000</option></select></label>
+<label>Block <select id="block"><option>256</option><option>512</option><option selected>800</option><option>1000</option><option>1200</option></select></label>
+<label>FPS <select id="fps"><option>4</option><option>6</option><option>8</option><option selected>10</option><option>12</option></select></label>
+<label>ECC <select id="ecc"><option>L</option><option selected>M</option><option>Q</option></select></label>
+<label>QR px <select id="qrsize"><option>560</option><option selected>720</option></select></label>
+<label style="justify-content:end">2x dwell<input id="double" type="checkbox" checked /></label>
+<button id="start">Start loop</button>
+<button id="stop">Stop</button>
+</div>
+<p id="stats"></p>
+</div>
+<div id="stage" title="click for fullscreen"><canvas id="qr"></canvas><div class="meta" id="overlay"></div></div>
+<script type="module" src="/src/sender.ts"></script>
+</body></html>
